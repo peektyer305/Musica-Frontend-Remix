@@ -1,13 +1,16 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable react/jsx-no-comment-textnodes */
+import useEmblaCarousel from "embla-carousel-react";
 import { Post } from "~/domain/post";
 import { buildUrl } from "~/utils/buildUrl";
+import "../styles/embla.css";
 
 export default function PostCard(props: { post: Post }) {
   const imageUrl = props.post.imageUrl ? buildUrl(props.post.imageUrl) : null;
   const userIconUrl = props.post.userIconUrl
     ? buildUrl(props.post.userIconUrl)
     : null;
+  const [emblaRef] = useEmblaCarousel();
   return (
     <div className="border rounded-lg shadow-sm text-wrap whitespace-normal break-words">
       <div className="p-4 flex items-center">
@@ -20,24 +23,28 @@ export default function PostCard(props: { post: Post }) {
         )}
         <div className="ml-2 font-semibold">{props.post.userName}</div>
       </div>
-      <div className="flex justify-center">
-        <img
-          src={props.post.music.image}
-          alt="Image 1"
-          className="w-auto h-auto"
-        />
-      </div>{" "}
-      {imageUrl && (
-        <div className="flex justify-center items-center">
-          <a href={imageUrl}>
+      <div className="embla" ref={emblaRef}>
+        <div className="embla__container">
+          <div className="embla__slide">
             <img
-              src={imageUrl}
-              alt="Image 2 optional"
+              src={props.post.music.image}
+              alt="Image 1"
               className="w-auto h-auto"
             />
-          </a>
+          </div>
+          {imageUrl && (
+            <div className="embla__slide">
+              <a href={imageUrl}>
+                <img
+                  src={imageUrl}
+                  alt="Image 2 optional"
+                  className="w-auto h-auto"
+                />
+              </a>
+            </div>
+          )}
         </div>
-      )}
+      </div>
       <div className="px-4 pb-4">
         <span className="font-semibold mr-2">{props.post.title}</span>
         <br />
