@@ -5,15 +5,14 @@ import { Post } from "~/domain/post";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "Musica" },
+    { name: "description", content: "Welcome to Musica!" },
   ];
 };
 
 export async function loader() {
   const response = await fetch("http://localhost:8080/posts");
   const posts = await response.json();
-  console.log(posts);
   return { posts };
 }
 
@@ -21,7 +20,6 @@ export default function Index() {
   const { posts } = useLoaderData<typeof loader>();
   return (
     <div>
-      <h1>Welcome to Musica!</h1>
       {posts.map((post: Post) => (
         <div key={post.id}>
           <PostCard post={post} />

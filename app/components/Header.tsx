@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import LogOutButton from "./LohOutButton";
 // import { supabase } from "../App";
 // import { UserInfo } from "../types/data";
 
 export default function Header() {
   //   const [readyPost, setReadyPost] = useState<boolean>(false);
-  //   const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
   //   const [isUser, setIsUser] = useState<UserInfo>({});
   //   useEffect(() => {
   //     const fetchUser = async () => {
@@ -41,17 +43,11 @@ export default function Header() {
   return (
     <header className="bg-white shadow-md py-4">
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <h1 className="text-xl font-bold text-gray-800">Musica</h1>
+        <h1 className="text-xl font-bold text-gray-800">
+          <Link to="/">Musica</Link>
+        </h1>
         <nav>
           <ul className="flex space-x-4 items-center">
-            <li>
-              <Link
-                to="/TimeLine"
-                className="text-gray-800 hover:text-blue-500 transition duration-300"
-              >
-                TimeLine
-              </Link>
-            </li>
             <li>
               <button
                 type="button"
@@ -68,7 +64,7 @@ export default function Header() {
                 <VscAccount />
               )}
             </button> */}
-            {/* {isLogin ? (
+            {isLogin ? (
               <LogOutButton />
             ) : (
               <ul className="flex space-x-4 items-center">
@@ -89,7 +85,7 @@ export default function Header() {
                   </Link>
                 </li>
               </ul>
-            )} */}
+            )}
           </ul>
         </nav>
       </div>
