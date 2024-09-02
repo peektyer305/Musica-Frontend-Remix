@@ -1,4 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import PostCard from "~/components/PostCard";
+import { Post } from "~/domain/post";
 
 export const meta: MetaFunction = () => {
   return [
@@ -7,42 +10,23 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+export async function loader() {
+  const response = await fetch("http://localhost:8080/posts");
+  const posts = await response.json();
+  console.log(posts);
+  return { posts };
+}
+
 export default function Index() {
+  const { posts } = useLoaderData<typeof loader>();
   return (
-    <div className="font-sans p-4">
-      <h1 className="text-3xl">Welcome to Remix</h1>
-      <ul className="list-disc mt-4 pl-6 space-y-2">
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/quickstart"
-            rel="noreferrer"
-          >
-            5m Quick Start
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/tutorial"
-            rel="noreferrer"
-          >
-            30m Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/docs"
-            rel="noreferrer"
-          >
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+    <div>
+      <h1>Welcome to Musica!</h1>
+      {posts.map((post: Post) => (
+        <div key={post.id}>
+          <PostCard post={post} />
+        </div>
+      ))}
     </div>
   );
 }
