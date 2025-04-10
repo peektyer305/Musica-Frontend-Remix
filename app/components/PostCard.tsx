@@ -2,21 +2,16 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import useEmblaCarousel from "embla-carousel-react";
 import { Post } from "~/domain/post";
-import { buildUrl } from "~/utils/buildUrl";
 import "../styles/embla.css";
 
 export default function PostCard(props: { post: Post }) {
-  const imageUrl = props.post.imageUrl ? buildUrl(props.post.imageUrl) : null;
-  const userIconUrl = props.post.userIconUrl
-    ? buildUrl(props.post.userIconUrl)
-    : null;
   const [emblaRef] = useEmblaCarousel();
   return (
     <div className="w-auto border rounded-lg shadow-sm text-wrap whitespace-normal break-words">
       <div className="p-4 flex items-center">
-        {userIconUrl && (
+        {props.post.userIconUrl && (
           <img
-            src={userIconUrl}
+            src={props.post.userIconUrl}
             alt="profile"
             className="rounded-full h-8 w-8 object-cover"
           />
@@ -31,9 +26,9 @@ export default function PostCard(props: { post: Post }) {
               <img src={props.post.music.image} alt="Image 1" />
             </a>
           </div>
-          {imageUrl && (
+          {props.post.imageUrl && (
             <div className="embla__slide">
-              <img src={imageUrl} alt="Image 2 optional" />
+              <img src={props.post.imageUrl} alt="Image 2 optional" />
             </div>
           )}
         </div>

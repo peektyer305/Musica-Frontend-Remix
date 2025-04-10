@@ -1,5 +1,3 @@
-import { Url } from "~/interface/url";
-
 export interface Post {
   id: string;
   userId: string;
@@ -11,8 +9,8 @@ export interface Post {
     title: string;
     url: string;
   };
-  imageUrl?: Url;
-  userIconUrl?: Url;
+  imageUrl?: string;
+  userIconUrl?: string;
   userName: string;
   createdAt: Date;
   updatedAt: Date;

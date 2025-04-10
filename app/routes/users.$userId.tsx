@@ -30,8 +30,9 @@ export default function UserPage() {
     <div>
       <h1>User Page</h1>
       <p>User ID: {user.id}</p>
-      <p>Username: {user.username}</p>
-      <p>Bio: {user.bio}</p>
+      <img src={user.userIconUrl} alt={`Profile of ${user.username}`} />
+      <h2> {user.username}</h2>
+      <p>Bio: {user.userInfo}</p>
       <p>
         posts:
         {user.posts.map((post: PostFromUserPage) => (

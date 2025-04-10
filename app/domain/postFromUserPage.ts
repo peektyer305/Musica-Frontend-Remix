@@ -15,6 +15,7 @@ export interface PostFromUserPage {
 export interface User {
   id: string;
   username: string;
-  bio?: string;
+  userInfo?: string;
+  userIconUrl?: string;
   posts: PostFromUserPage[];
 }
