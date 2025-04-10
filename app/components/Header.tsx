@@ -6,7 +6,7 @@ import LogOutButton from "./LohOutButton";
 
 export default function Header() {
   //   const [readyPost, setReadyPost] = useState<boolean>(false);
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin] = useState(false);
   //   const [isUser, setIsUser] = useState<UserInfo>({});
   //   useEffect(() => {
   //     const fetchUser = async () => {

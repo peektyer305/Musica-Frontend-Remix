@@ -1,6 +1,8 @@
 // app/routes/users/$userId.tsx
 import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
+import PostCardFromUser from "~/components/PostCardFromUser";
+import { PostFromUserPage, User } from "~/domain/postFromUserPage";
 
 export const loader: LoaderFunction = async ({ params }) => {
   const { userId } = params;
@@ -12,7 +14,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   if (!response.ok) {
     throw new Error("Failed to fetch user data");
   }
-  const user = await response.json();
+  const user: User = await response.json();
   if (!user) {
     throw new Error("User not found");
   }
@@ -30,7 +32,14 @@ export default function UserPage() {
       <p>User ID: {user.id}</p>
       <p>Username: {user.username}</p>
       <p>Bio: {user.bio}</p>
-      <p>posts:{user.posts}</p>
+      <p>
+        posts:
+        {user.posts.map((post: PostFromUserPage) => (
+          <div key={post.id}>
+            <PostCardFromUser post={post} />
+          </div>
+        ))}
+      </p>
     </div>
   );
 }
