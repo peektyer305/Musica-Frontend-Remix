@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import LogOutButton from "./LohOutButton";
 // import { supabase } from "../App";
 // import { UserInfo } from "../types/data";

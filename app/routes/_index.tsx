@@ -1,5 +1,5 @@
-import type { MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import type { MetaFunction } from "react-router";
+import { useLoaderData } from "react-router";
 import PostCard from "~/components/PostCard";
 import { Post } from "~/domain/post";
 

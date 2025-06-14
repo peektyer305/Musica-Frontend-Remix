@@ -1,6 +1,6 @@
 // app/routes/users/$userId.tsx
-import type { LoaderFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import type { LoaderFunction } from "react-router";
+import { useLoaderData } from "react-router";
 import PostCardFromUser from "~/components/PostCardFromUser";
 import { PostFromUserPage, User } from "~/domain/postFromUserPage";
 
