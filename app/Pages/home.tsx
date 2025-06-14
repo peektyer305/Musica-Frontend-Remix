@@ -13,6 +13,11 @@ export const meta: MetaFunction = () => {
 export async function loader() {
   const response = await fetch("http://localhost:8080/posts");
   const posts = await response.json();
+   posts.sort((a: { createdAt: string | number | Date; }, b: { createdAt: string | number | Date; }) => {
+    const ta = new Date(a.createdAt).getTime();
+    const tb = new Date(b.createdAt).getTime();
+    return tb - ta;
+  });
   return { posts };
 }
 

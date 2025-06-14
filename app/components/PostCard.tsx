@@ -3,20 +3,22 @@
 import useEmblaCarousel from "embla-carousel-react";
 import { Post } from "~/domain/post";
 import "../styles/embla.css";
+import { Link } from "react-router";
 
 export default function PostCard(props: { post: Post }) {
   const [emblaRef] = useEmblaCarousel();
   return (
     <div className="w-auto border rounded-lg shadow-sm text-wrap whitespace-normal break-words">
-      <div className="p-4 flex items-center">
-        {props.post.userIconUrl && (
+      <div className="p-4 flex">
+        <Link to={`/users/${props.post.userId}`} className="flex items-center">{props.post.userIconUrl && (
           <img
             src={props.post.userIconUrl}
             alt="profile"
-            className="rounded-full h-8 w-8 object-cover"
+            className="rounded-full h-10 w-10 object-cover"
           />
         )}
         <div className="ml-2 font-semibold">{props.post.userName}</div>
+        </Link>
         <div className="ml-10">{props.post.music.title}</div>
       </div>
       <div className="embla my-2" ref={emblaRef}>

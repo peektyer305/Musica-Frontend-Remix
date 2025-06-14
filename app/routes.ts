@@ -7,5 +7,5 @@ import {
 
 export default [
   index("./Pages/home.tsx"),
-  //route("about", "./about.tsx"),
+   route("users/:userId", "./Pages/$userId.tsx"),
 ] satisfies RouteConfig;
