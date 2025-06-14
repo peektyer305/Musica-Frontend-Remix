@@ -4,44 +4,63 @@ import useEmblaCarousel from "embla-carousel-react";
 import { Post } from "~/domain/post";
 import "../styles/embla.css";
 import { Link } from "react-router";
+import { formatDate } from "~/utils/formatDate";
 
 export default function PostCard(props: { post: Post }) {
-  const [emblaRef] = useEmblaCarousel();
+  const { post } = props;
+  const [emblaRef] = useEmblaCarousel({ loop: false });
+  const formattedCreatedAt = formatDate(post.createdAt);
   return (
-    <div className="w-auto border rounded-lg shadow-sm text-wrap whitespace-normal break-words">
-      <div className="p-4 flex">
-        <Link to={`/users/${props.post.userId}`} className="flex items-center">{props.post.userIconUrl && (
-          <img
-            src={props.post.userIconUrl}
-            alt="profile"
-            className="rounded-full h-10 w-10 object-cover"
-          />
-        )}
-        <div className="ml-2 font-semibold">{props.post.userName}</div>
+    <div className="bg-white border rounded-lg shadow-lg overflow-hidden flex flex-col w-full max-w-xs mx-auto mb-8">
+      {/* User Info */}
+      <div className="flex items-center p-4 bg-gray-100">
+        <Link to={`/users/${post.userId}`} className="flex items-center">
+          {post.userIconUrl && (
+            <img
+              src={post.userIconUrl}
+              alt={post.userName}
+              className="h-12 w-12 rounded-full object-cover"
+            />
+          )}
+          <div className="ml-3 text-base font-semibold truncate max-w-[140px]">
+            {post.userName}
+          </div>
         </Link>
-        <div className="ml-10">{props.post.music.title}</div>
+        <div className="ml-auto text-xs text-gray-600 whitespace-nowrap">
+          {formattedCreatedAt}
+        </div>
       </div>
-      <div className="embla my-2" ref={emblaRef}>
-        <div className="embla__container w-full">
-          <div className="embla__slide">
-            <a href={props.post.music.url} target="_blank" rel="noreferrer">
-              <img src={props.post.music.image} alt="Image 1" />
+
+      {/* Image Carousel in Square */}
+      <div className="relative w-full aspect-square" ref={emblaRef}>
+        <div className="absolute inset-0 flex">
+          <div className="embla__slide flex-shrink-0 w-full">
+            <a href={post.music.url} target="_blank" rel="noreferrer">
+              <img
+                src={post.music.image}
+                alt={post.music.title}
+                className="w-full h-full object-cover"
+              />
             </a>
           </div>
-          {props.post.imageUrl && (
-            <div className="embla__slide">
-              <img src={props.post.imageUrl} alt="Image 2 optional" />
+          {post.imageUrl && (
+            <div className="embla__slide flex-shrink-0 w-full">
+              <img
+                src={post.imageUrl}
+                alt="Optional"
+                className="w-full h-full object-cover"
+              />
             </div>
           )}
         </div>
-        <div className="ml-auto">{props.post.music.description}</div>
       </div>
-      <div className="px-4 pb-4">
-        <span className="font-semibold mr-2">{props.post.title}</span>
-        <br />
-        <span className="text-pretty">{props.post.content}</span>
-        <br />
-        <span>{props.post.createdAt.toString()}</span>
+
+      {/* Content */}
+      <div className="p-4 flex flex-col space-y-2">
+        <h3 className="text-lg font-bold truncate">{post.music.title}</h3>
+        <p className="text-sm text-gray-700 line-clamp-3">{post.music.description}</p>
+        <h4 className="text-base font-semibold truncate">{post.title}</h4>
+        <p className="text-gray-600 text-sm line-clamp-4">{post.content}</p>
       </div>
     </div>
   );

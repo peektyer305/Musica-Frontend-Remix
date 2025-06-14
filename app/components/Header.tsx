@@ -1,57 +1,55 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import LogOutButton from "./LohOutButton";
+import LogOutButton from "./LogOutButton";
 // import { supabase } from "../App";
 // import { UserInfo } from "../types/data";
 
 export default function Header() {
-  //   const [readyPost, setReadyPost] = useState<boolean>(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [isLogin] = useState(false);
+  //   const [readyPost, setReadyPost] = useState<boolean>(false);
   //   const [isUser, setIsUser] = useState<UserInfo>({});
-  //   useEffect(() => {
-  //     const fetchUser = async () => {
-  //       const { data, error } = await supabase.auth.getUser();
-  //       if (error) console.error(error.message);
-  //       if (data.user) {
-  //         setIsLogin(true);
-  //         const { id } = data.user;
-  //         return id;
-  //       } else {
-  //         setIsLogin(false);
-  //         return undefined;
-  //       }
-  //     };
-  //     const getUser = async () => {
-  //       const id = await fetchUser();
-  //       if (id) {
-  //         const { data, error } = await supabase
-  //           .from("profiles")
-  //           .select()
-  //           .eq("id", id);
-  //         if (error) {
-  //           console.error(error.message);
-  //         } else {
-  //           setIsUser(Object.assign({}, data[0]));
-  //         }
-  //       }
-  //     };
+  //   useEffect(() => { /* ... */ }, []);
 
-  //     getUser();
-  //     console.log(isLogin);
-  //     console.log(isUser);
-  //   }, []);
   return (
-    <header className="bg-white shadow-md py-4">
-      <div className="container mx-auto px-6 flex justify-between items-center">
-        <h1 className="text-xl font-bold text-gray-800">
-          <Link to="/">Musica</Link>
-        </h1>
-        <nav>
-          <ul className="flex space-x-4 items-center">
+    <header className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white sticky top-0 z-50">
+      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+        <Link to="/" className="text-2xl font-extrabold tracking-tight">
+          Musica
+        </Link>
+        <button
+          className="md:hidden focus:outline-none"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle Menu"
+        >
+          {menuOpen ? (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
+        </button>
+        <nav
+          className={`absolute inset-x-0 top-full bg-white text-gray-800 flex flex-col md:static md:flex md:flex-row md:bg-transparent md:text-white ${
+            menuOpen ? "flex" : "hidden"
+          }`}
+        >
+          <ul className="flex flex-col md:flex-row md:space-x-6 p-4 md:p-0">
+            <li>
+                  <Link
+                    to="/about"
+                    className="block px-3 py-2 rounded hover:bg-gray-200 md:hover:bg-indigo-700 md:hover:text-white transition"
+                  >
+                    About
+                  </Link>
+                </li>
             <li>
               <button
                 type="button"
-                className="text-gray-800 hover:text-blue-500 transition duration-300"
+                className="block px-3 py-2 rounded hover:bg-gray-200 md:hover:bg-indigo-700 md:hover:text-white transition"
                 // onClick={() => setReadyPost(true)}
               >
                 Post
@@ -65,13 +63,15 @@ export default function Header() {
               )}
             </button> */}
             {isLogin ? (
-              <LogOutButton />
+              <li>
+                <LogOutButton />
+              </li>
             ) : (
-              <ul className="flex space-x-4 items-center">
+              <>  
                 <li>
                   <Link
                     to="/auth/login"
-                    className="text-gray-800 hover:text-blue-500 transition duration-300"
+                    className="block px-3 py-2 rounded hover:bg-gray-200 md:hover:bg-indigo-700 md:hover:text-white transition"
                   >
                     Login
                   </Link>
@@ -79,12 +79,12 @@ export default function Header() {
                 <li>
                   <Link
                     to="/auth/signup"
-                    className="text-gray-800 hover:text-blue-500 transition duration-300"
+                    className="block px-3 py-2 rounded hover:bg-gray-200 md:hover:bg-indigo-700 md:hover:text-white transition"
                   >
                     SignUp
                   </Link>
                 </li>
-              </ul>
+              </>
             )}
           </ul>
         </nav>
