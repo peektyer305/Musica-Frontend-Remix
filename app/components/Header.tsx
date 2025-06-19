@@ -70,7 +70,7 @@ export default function Header() {
               <>  
                 <li>
                   <Link
-                    to="/auth/login"
+                    to="/login"
                     className="block px-3 py-2 rounded hover:bg-gray-200 md:hover:bg-indigo-700 md:hover:text-white transition"
                   >
                     Login
@@ -78,7 +78,7 @@ export default function Header() {
                 </li>
                 <li>
                   <Link
-                    to="/auth/signup"
+                    to="/signup"
                     className="block px-3 py-2 rounded hover:bg-gray-200 md:hover:bg-indigo-700 md:hover:text-white transition"
                   >
                     SignUp
