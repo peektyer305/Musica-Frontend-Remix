@@ -1,6 +1,7 @@
 import type { LoaderFunctionArgs } from "react-router";
 import { redirect } from "react-router";
 import { authenticator, sessionStorage, setUserSession } from "~/services/auth.server";
+import {toast} from "react-toastify";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   // URLパラメータを抽出

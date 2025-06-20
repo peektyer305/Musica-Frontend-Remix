@@ -7,7 +7,7 @@
 import { HydratedRouter } from "react-router/dom";
 import { startTransition, StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
-
+import 'react-toastify/dist/ReactToastify.css';
 startTransition(() => {
   hydrateRoot(
     document,

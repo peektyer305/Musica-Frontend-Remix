@@ -14,7 +14,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const clientId = process.env.AUTH0_CLIENT_ID;
   
   // アプリケーションのルートURL（ログアウト後のリダイレクト先）
-  const returnTo = new URL("/login", request.url).toString();
+  const returnTo = new URL("/", request.url).toString();
   
   // Auth0のログアウトURLを構築
   const logoutURL = `https://${auth0Domain}/v2/logout?client_id=${clientId}&returnTo=${encodeURIComponent(returnTo)}`;

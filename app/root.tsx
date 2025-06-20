@@ -2,6 +2,7 @@ import { Link, Links, LoaderFunctionArgs, Meta, Outlet, Scripts, ScrollRestorati
 import Header from "./components/Header";
 import "./tailwind.css";
 import { authenticator, isAuthenticated } from "./services/auth.server";
+import { ToastContainer } from "react-toastify";
 
 export async function loader({request}: LoaderFunctionArgs) {
   //ここで認証やデータの取得を行うことができます。
@@ -41,6 +42,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <ToastContainer />
         <Header isLogin={isAuthenticated} />
         {children}
         <ScrollRestoration />
