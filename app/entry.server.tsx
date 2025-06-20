@@ -5,7 +5,7 @@
  */
 
 import { PassThrough } from "node:stream";
-
+import "dotenv/config"; // Load environment variables from .env file
 import type { AppLoadContext, EntryContext } from "react-router";
 import { createReadableStreamFromReadable } from "@react-router/node";
 import { ServerRouter } from "react-router";
