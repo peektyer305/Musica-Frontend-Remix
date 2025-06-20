@@ -11,7 +11,7 @@ export default function PostCard(props: { post: Post }) {
   const [emblaRef] = useEmblaCarousel({ loop: false });
   const formattedCreatedAt = formatDate(post.createdAt);
   return (
-    <div className="bg-white border rounded-lg shadow-lg overflow-hidden flex flex-col w-full max-w-xs mx-auto mb-8">
+    <div className="bg-white border rounded-lg shadow-lg overflow-hidden flex flex-col w-full max-w-lg mx-auto mb-8">
       {/* User Info */}
       <div className="flex items-center p-4 bg-gray-100">
         <Link to={`/users/${post.userId}`} className="flex items-center">
@@ -23,7 +23,7 @@ export default function PostCard(props: { post: Post }) {
             />
           )}
           <div className="ml-3 text-base font-semibold truncate max-w-[140px]">
-            {post.userName}@{post.userClientId}
+            {post.userName}<p className="text-gray-500 text-sm">@{post.userClientId}</p>
           </div>
         </Link>
         <div className="ml-auto text-xs text-gray-600 whitespace-nowrap">

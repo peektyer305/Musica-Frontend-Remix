@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Form, Link } from "react-router";
 export default function Header( props: { isLogin: boolean } ) {
   const { isLogin } = props;
   const [menuOpen, setMenuOpen] = useState(false);
@@ -55,12 +55,15 @@ export default function Header( props: { isLogin: boolean } ) {
                 ):(    
               <>  
                 <li>
-                  <Link
-                    to="/login"
+                  <div
                     className="block px-3 py-2 rounded hover:bg-gray-200 md:hover:bg-indigo-700 md:hover:text-white transition"
                   >
-                    Login
-                  </Link>
+                   <Form method="post" action="/auth/auth0">
+                     <button type="submit">
+                       Login
+                    </button>
+                   </Form>
+                  </div>
                 </li>
                 <li>
                   <Link
