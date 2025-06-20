@@ -1,16 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import LogOutButton from "./LogOutButton";
-// import { supabase } from "../App";
-// import { UserInfo } from "../types/data";
-
-export default function Header() {
+export default function Header( props: { isLogin: boolean } ) {
+  const { isLogin } = props;
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLogin] = useState(false);
-  //   const [readyPost, setReadyPost] = useState<boolean>(false);
-  //   const [isUser, setIsUser] = useState<UserInfo>({});
-  //   useEffect(() => { /* ... */ }, []);
-
+  
   return (
     <header className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white sticky top-0 z-50">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
@@ -46,7 +40,7 @@ export default function Header() {
                     About
                   </Link>
                 </li>
-            <li>
+                { isLogin ? (<li>
               <button
                 type="button"
                 className="block px-3 py-2 rounded hover:bg-gray-200 md:hover:bg-indigo-700 md:hover:text-white transition"
@@ -54,19 +48,9 @@ export default function Header() {
               >
                 Post
               </button>
+              <LogOutButton />
             </li>
-            {/* <button className="text-2xl w-12 h-12">
-              {isLogin ? (
-                <img alt="user" src={isUser.userImage} />
-              ) : (
-                <VscAccount />
-              )}
-            </button> */}
-            {isLogin ? (
-              <li>
-                <LogOutButton />
-              </li>
-            ) : (
+                ):(    
               <>  
                 <li>
                   <Link
@@ -84,8 +68,7 @@ export default function Header() {
                     SignUp
                   </Link>
                 </li>
-              </>
-            )}
+              </>) }  
           </ul>
         </nav>
       </div>

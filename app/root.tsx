@@ -30,9 +30,8 @@ export async function loader({request}: LoaderFunctionArgs) {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated } = useLoaderData<typeof loader>();
   const location = useLocation();
-  const isLoginPage = location.pathname === "/login";
+  const {isAuthenticated} = useLoaderData<typeof loader>();
   return (
     <html lang="en">
       <head>
@@ -42,13 +41,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-         {isAuthenticated && !isLoginPage && <Link to="/dashboard">ダッシュボード</Link>}
-            {isAuthenticated ? (
-              <Link to="/logout">ログアウト</Link>
-            ) : (
-              !isLoginPage && <Link to="/login">ログイン</Link>
-            )}
-        <Header />
+        <Header isLogin={isAuthenticated} />
         {children}
         <ScrollRestoration />
         <Scripts />

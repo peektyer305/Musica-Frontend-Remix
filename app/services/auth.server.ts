@@ -1,5 +1,5 @@
 import { Authenticator } from "remix-auth";
-import { createCookieSessionStorage } from "react-router";
+import {createCookieSessionStorage} from "react-router"
 import { Auth0Strategy } from "remix-auth-auth0";
 
 //ユーザータイプの定義
@@ -8,8 +8,8 @@ export type User = {
     email: string;
     name: string;
     picture: string;
-    accessToken: string;
-    refreshToken?: string | null;
+    accessToken: string | null;
+    refreshToken: null;
 };
 
 //セッションストレージの設定
@@ -73,7 +73,7 @@ const auth0Strategy = new Auth0Strategy<User>(
             `https://${process.env.AUTH0_DOMAIN}/userinfo`,
             {
                 headers: {
-                    Authorization: `Bearer ${tokens.accessToken}`,
+                    Authorization: `Bearer ${tokens.accessToken()}`,
                 },
             },
         );
@@ -87,7 +87,7 @@ const auth0Strategy = new Auth0Strategy<User>(
             name: userData.name,
             picture: userData.picture,
             accessToken: tokens.accessToken(),
-            refreshToken: tokens.refreshToken() || null,
+            refreshToken: null,
         };
      }
     );
