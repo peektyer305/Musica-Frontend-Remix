@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import LogOutButton from "./LogOutButton";
 export default function Header( props: { isLogin: boolean } ) {
   const { isLogin } = props;
   const [menuOpen, setMenuOpen] = useState(false);
@@ -40,16 +39,19 @@ export default function Header( props: { isLogin: boolean } ) {
                     About
                   </Link>
                 </li>
-                { isLogin ? (<li>
+                { isLogin ? (<><li>
               <button
                 type="button"
                 className="block px-3 py-2 rounded hover:bg-gray-200 md:hover:bg-indigo-700 md:hover:text-white transition"
                 // onClick={() => setReadyPost(true)}
               >
                 Post
-              </button>
-              <LogOutButton />
-            </li>
+              </button></li>
+              <li>
+              <Link to ="/logout" className="block px-3 py-2 rounded hover:bg-gray-200 md:hover:bg-indigo-700 md:hover:text-white transition">
+                Logout
+              </Link>
+            </li></>
                 ):(    
               <>  
                 <li>

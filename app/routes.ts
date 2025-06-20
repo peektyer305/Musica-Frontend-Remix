@@ -10,7 +10,6 @@ export default [
   route("users/:userId", "./Pages/$userId.tsx"),
   route("about", "./Pages/about.tsx"),
   route("login", "./Pages/login.tsx"),
-  route("dashboard", "./Pages/dashboard.tsx"),
   route("logout", "./Pages/logout.tsx"),
   route("auth/auth0", "./Pages/auth.auth0.tsx"),
   route("auth/auth0/callback", "./Pages/auth.auth0.callback.tsx")

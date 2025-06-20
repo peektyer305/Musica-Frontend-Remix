@@ -11,7 +11,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   try {
     const user = await authenticator.authenticate("auth0", request);
     const session = await setUserSession(request, user, user);
-    return redirect("/dashboard", {
+    return redirect("/", {
       headers: {
         "Set-Cookie": await sessionStorage.commitSession(session)
       }
