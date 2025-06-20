@@ -9,6 +9,7 @@ export interface Post {
     title: string;
     url: string;
   };
+  userClientId: string;
   imageUrl?: string;
   userIconUrl?: string;
   userName: string;

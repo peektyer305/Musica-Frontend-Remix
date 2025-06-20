@@ -23,7 +23,7 @@ export default function PostCard(props: { post: Post }) {
             />
           )}
           <div className="ml-3 text-base font-semibold truncate max-w-[140px]">
-            {post.userName}
+            {post.userName}@{post.userClientId}
           </div>
         </Link>
         <div className="ml-auto text-xs text-gray-600 whitespace-nowrap">

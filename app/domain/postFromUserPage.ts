@@ -2,6 +2,7 @@ export interface PostFromUserPage {
   id: string;
   title: string;
   content?: string;
+  userClientId: string;
   music: {
     description: string;
     image: string;
@@ -17,5 +18,6 @@ export interface User {
   username: string;
   userInfo?: string;
   userIconUrl?: string;
+  userClientId: string;
   posts: PostFromUserPage[];
 }

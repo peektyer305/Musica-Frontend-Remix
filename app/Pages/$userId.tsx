@@ -41,7 +41,10 @@ export default function UserProfile() {
           />
           <div className="text-center sm:text-left">
             <h1 className="text-2xl sm:text-3xl font-bold">{user.username}</h1>
-            <p className="text-gray-200">@{user.username}</p>
+            <p className="text-gray-200">@{user.userClientId}</p>
+          </div>
+          <div className="mt-4 sm:mt-0 sm:ml-auto lg: mr-auto border-l-2 border-gray-200 pl-4">
+            {user.userInfo}
           </div>
         </div>
 
