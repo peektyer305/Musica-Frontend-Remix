@@ -15,10 +15,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
   
   // アプリケーションのルートURL（ログアウト後のリダイレクト先）
   const returnTo = new URL("/", request.url).toString();
-  
+
   // Auth0のログアウトURLを構築
   const logoutURL = `https://${auth0Domain}/v2/logout?client_id=${clientId}&returnTo=${encodeURIComponent(returnTo)}`;
-  
   // まずRemixのセッションを破棄し、次にAuth0のログアウトURLにリダイレクト
   return redirect(logoutURL, {
     headers: {
@@ -35,5 +34,6 @@ export async function action(args: ActionFunctionArgs) {
 
 // クライアント側のコンポーネント（空）
 export default function LogoutRoute() {
+  // クライアント側では何もレンダリングしない
   return null;
 }
